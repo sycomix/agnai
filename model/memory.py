@@ -118,11 +118,10 @@ def recallContent(name):
 def listCollections():
     collections = client.list_collections()
 
-    results = []
-
-    for i, row in enumerate(collections):
-        results.append({"id": row.id, "name": row.name, "metadata": row.metadata})
-
+    results = [
+        {"id": row.id, "name": row.name, "metadata": row.metadata}
+        for row in collections
+    ]
     return {"result": results}
 
 

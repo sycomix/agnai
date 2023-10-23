@@ -25,11 +25,10 @@ def summarize(text: str) -> str:
     inputs = tokenizer(text, return_tensors="pt").to(device)
 
     summary_ids = transformer.generate(
-        inputs["input_ids"],
-        num_beams=2,
-        temperature=float(0.5),
+        inputs["input_ids"], num_beams=2, temperature=0.5
     )
-    summary = tokenizer.batch_decode(
-        summary_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True
+    return tokenizer.batch_decode(
+        summary_ids,
+        skip_special_tokens=True,
+        clean_up_tokenization_spaces=True,
     )[0]
-    return summary
